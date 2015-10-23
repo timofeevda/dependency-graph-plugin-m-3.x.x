@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+
+<!-- Header -->
+<xsd:schema
+    targetNamespace="http://graphml.graphdrawing.org/xmlns"
+
+    xmlns="http://graphml.graphdrawing.org/xmlns"
+    xmlns:g="http://graphml.graphdrawing.org/xmlns"
+    xmlns:y="http://www.yworks.com/xml/graphml"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    >
+
+  <xsd:annotation>
+    <xsd:documentation>
+      GraphML core language definitions including GraphML attributes and GraphML parseinfo.
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:import namespace="http://www.yworks.com/xml/graphml" schemaLocation="yfeatures.xsd"/>
+
+  <!--<xsd:include schemaLocation="graphml-parseinfo.xsd"/>-->
+
+  <!-- Redefinition of the elements in the graphml-structure schema -->
+  <xsd:redefine schemaLocation="graphml.xsd">
+
+    <xsd:attributeGroup name="key.extra.attrib">
+      <xsd:annotation>
+        <xsd:documentation>
+          Redefinition of file graphml-structure.xsd.
+          <p>Extends the attribute group key.extra.attrib (which takes
+            part in the attribute list of &lt;key>) by adding the
+            attribute yfiles.type which is defined below.
+          </p>
+        </xsd:documentation>
+      </xsd:annotation>
+      <xsd:attributeGroup ref="key.extra.attrib"/>
+      <xsd:attribute name="yfiles.type" type="xsd:string" use="optional">
+        <xsd:annotation>
+          <xsd:documentation>
+            Custom yfiles specific attribute that allows to specify an additional data type.
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+    </xsd:attributeGroup>
+
+    <!-- Definition of the different grouping types -->
+    <!-- The grouping type is stored as attribute at the node element -->
+    <xsd:attributeGroup name="node.extra.attrib">
+      <xsd:annotation>
+        <xsd:documentation>
+          Redefinition of file graphml-structure.xsd.
+          <p>Extends the attribute group node.extra.attrib (which takes
+            part in the attribute list of &lt;node>) by adding a
+            yfiles specific attribute for the folder type.
+          </p>
+        </xsd:documentation>
+      </xsd:annotation>
+      <xsd:attributeGroup ref="node.extra.attrib"/>
+      <xsd:attribute name="yfiles.foldertype" type="yfiles.foldertype.type" use="optional">
+        <xsd:annotation>
+          <xsd:documentation>
+            The foldertype for group/folder nodes.
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+    </xsd:attributeGroup>
+
+    <xsd:complexType name="data-extension.type">
+      <xsd:complexContent mixed="true">
+        <xsd:extension base="data-extension.type">
+          <xsd:sequence>
+            <xsd:any minOccurs="0" maxOccurs="unbounded" processContents="strict"/>
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:redefine>
+
+  <!-- Type of Grouping -->
+  <xsd:simpleType name="yfiles.foldertype.type">
+    <xsd:annotation>
+      <xsd:documentation>
+        The valid folder types for a folder/group node.
+        <p>Valid values are
+          <ul>
+            <li><b>folder</b>: for folder nodes</li>
+            <li><b>group</b>: for group nodes</li>
+            <li><b>leaf</b>: for leaf nodes (this is the implied value)</li>
+          </ul>
+        </p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="folder"/>
+      <xsd:enumeration value="group"/>
+      <xsd:enumeration value="leaf"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+</xsd:schema>
+
+

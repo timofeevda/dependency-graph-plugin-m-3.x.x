@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+  targetNamespace="http://www.yworks.com/xml/graphml"
+  
+  xmlns="http://www.yworks.com/xml/graphml" 
+  xmlns:g="http://graphml.graphdrawing.org/xmlns"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  
+  elementFormDefault="qualified" 
+  attributeFormDefault="unqualified">
+
+ <xsd:annotation>
+    <xsd:documentation>
+     Schema definitions for yFiles GraphML graphics and
+      postprocessor extensions.
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:include schemaLocation="ygraphics.xsd"/>
+  <xsd:include schemaLocation="yprocessors.xsd"/>
+  <xsd:include schemaLocation="portconstraints.xsd"/>
+</xsd:schema>
+

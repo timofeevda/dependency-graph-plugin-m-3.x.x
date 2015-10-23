@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+
+<xsd:schema
+    targetNamespace="http://graphml.graphdrawing.org/xmlns"
+
+    xmlns="http://graphml.graphdrawing.org/xmlns"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    >
+
+  <xsd:annotation>
+    <xsd:documentation
+        source="http://graphml.graphdrawing.org/"
+        xml:lang="en">
+     This document defines the GraphML language including GraphML attributes and GraphML parseinfo.
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:redefine schemaLocation="graphml-structure.xsd">
+    <xsd:attributeGroup name="key.extra.attrib">
+      <xsd:annotation>
+      <xsd:documentation
+          source="http://graphml.graphdrawing.org/"
+          xml:lang="en">
+        Redefinition of file graphml-structure.xsd.
+        Extends the attribute group key.extra.attrib (which takes
+        part in the attribute list of &lt;key>) by adding the
+        attribute group key.attributes.attrib which is defined below.
+      </xsd:documentation>
+    </xsd:annotation>
+      <xsd:attributeGroup ref="key.extra.attrib"/>
+      <xsd:attributeGroup ref="key.attributes.attrib"/>
+    </xsd:attributeGroup>
+
+
+    <xsd:attributeGroup name="graph.extra.attrib">
+      <xsd:annotation>
+      <xsd:documentation
+          source="http://graphml.graphdrawing.org/"
+          xml:lang="en">
+        Redefinition of file graphml-structure.xsd.
+        Extends the attribute group node.extra.attrib (which takes
+        part in the attribute list of &lt;node>) by adding the
+        attribute group node.parseinfo.attrib which is defined below.
+      </xsd:documentation>
+    </xsd:annotation>
+      <xsd:attributeGroup ref="graph.extra.attrib"/>
+      <xsd:attributeGroup ref="graph.parseinfo.attrib"/>
+    </xsd:attributeGroup>
+
+
+    <xsd:attributeGroup name="node.extra.attrib">
+     <xsd:annotation>
+      <xsd:documentation
+          source="http://graphml.graphdrawing.org/"
+          xml:lang="en">
+        Redefinition of file graphml-structure.xsd.
+        Extends the attribute group graph.extra.attrib (which takes
+        part in the attribute list of &lt;graph>) by adding the
+        attribute group graph.parseinfo.attrib which is defined below.
+      </xsd:documentation>
+    </xsd:annotation>
+      <xsd:attributeGroup ref="node.extra.attrib"/>
+      <xsd:attributeGroup ref="node.parseinfo.attrib"/>
+    </xsd:attributeGroup>
+
+  </xsd:redefine>
+
+
+  <!--types as in graphml-attributes.xsd -->
+
+  <xsd:simpleType name="key.name.type" final="#all">
+
+    <xsd:annotation>
+      <xsd:documentation
+          source="http://graphml.graphdrawing.org/(Dokumentation der Attributes Erweiterung; entsprechende Stelle.html)"
+          xml:lang="en">
+        Simple type for the attr.name attribute of &lt;key>.
+        key.name.type is final, that is, it may not be extended
+        or restricted.
+        key.name.type is a restriction of xsd:NMTOKEN
+        Allowed values: (no restriction)
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NMTOKEN"/>
+  </xsd:simpleType>
+
+
+  <xsd:simpleType name="key.type.type" final="#all">
+
+    <xsd:annotation>
+      <xsd:documentation
+          source="http://graphml.graphdrawing.org/(Dokumentation der Attributes Erweiterung; entsprechende Stelle.html)"
+          xml:lang="en">
+        Simple type for the attr.type attribute of &lt;key>.
+        key.type.type is final, that is, it may not be extended
+        or restricted.
+        key.type.type is a restriction of xsd:NMTOKEN
+        Allowed values: boolean, int, long, float, double, string, complex.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="boolean"/>
+      <xsd:enumeration value="int"/>
+      <xsd:enumeration value="long"/>
+      <xsd:enumeration value="float"/>
+      <xsd:enumeration value="double"/>
+      <xsd:enumeration value="string"/>
+      <xsd:enumeration value="complex"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <xsd:attributeGroup name="key.attributes.attrib">
+    <xsd:annotation>
+      <xsd:documentation
+          source="http://graphml.graphdrawing.org/"
+          xml:lang="en">
+        Definition of the attribute group key.attributes.attrib.
+        This group consists of the two optional attributes
+        - attr.name (gives the name for the data function)
+        - attr.type (declares the range of values for the data function)
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="attr.name" type="key.name.type" use="optional"/>
+    <xsd:attribute name="attr.type" type="key.type.type" use="optional"/>
+  </xsd:attributeGroup>
+
+  <!--types as in graphml-parseinfo.xsd -->
+
+  <xsd:simpleType name="graph.order.type" final="#all">
+
+  <xsd:annotation>
+    <xsd:documentation 
+        source="http://graphml.graphdrawing.org/"
+        xml:lang="en">
+      Simple type for the parse.order attribute of &lt;graph>.
+      graph.order.type is final, that is, it may not be extended
+                          or restricted.
+      graph.order.type is a restriction of xsd:NMTOKEN
+      Allowed values: free, nodesfirst, adjacencylist.
+    </xsd:documentation>
+  </xsd:annotation>
+
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="free"/>
+      <xsd:enumeration value="nodesfirst"/>
+      <xsd:enumeration value="adjacencylist"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="graph.nodes.type" final="#all">
+
+  <xsd:annotation>
+    <xsd:documentation 
+        source="http://graphml.graphdrawing.org/"
+        xml:lang="en">
+      Simple type for the parse.nodes attribute of &lt;graph>.
+      graph.nodes.type is final, that is, it may not be extended
+                          or restricted.
+      graph.nodes.type is a restriction of xsd:nonNegativeInteger
+      Allowed values: (no restriction).
+    </xsd:documentation>
+  </xsd:annotation>
+
+    <xsd:restriction base="xsd:nonNegativeInteger"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="graph.edges.type" final="#all">
+
+  <xsd:annotation>
+    <xsd:documentation 
+        source="http://graphml.graphdrawing.org/"
+        xml:lang="en">
+      Simple type for the parse.edges attribute of &lt;graph>.
+      graph.edges.type is final, that is, it may not be extended
+                          or restricted.
+      graph.edges.type is a restriction of xsd:nonNegativeInteger
+      Allowed values: (no restriction).
+    </xsd:documentation>
+  </xsd:annotation>
+
+    <xsd:restriction base="xsd:nonNegativeInteger"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="graph.maxindegree.type" final="#all">
+
+  <xsd:annotation>
+    <xsd:documentation 
+        source="http://graphml.graphdrawing.org/"
+        xml:lang="en">
+      Simple type for the parse.maxindegree attribute of &lt;graph>.
+      graph.maxindegree.type is final, that is, it may not be extended
+                          or restricted.
+      graph.maxindegree.type is a restriction of xsd:nonNegativeInteger
+      Allowed values: (no restriction).
+    </xsd:documentation>
+  </xsd:annotation>
+
+    <xsd:restriction base="xsd:nonNegativeInteger"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="graph.maxoutdegree.type" final="#all">
+
+  <xsd:annotation>
+    <xsd:documentation 
+        source="http://graphml.graphdrawing.org/"
+        xml:lang="en">
+      Simple type for the parse.maxoutdegree attribute of &lt;graph>.
+      graph.maxoutdegree.type is final, that is, it may not be extended
+                          or restricted.
+      graph.maxoutdegree.type is a restriction of xsd:nonNegativeInteger
+      Allowed values: (no restriction).
+    </xsd:documentation>
+  </xsd:annotation>
+
+    <xsd:restriction base="xsd:nonNegativeInteger"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="graph.nodeids.type" final="#all">
+
+  <xsd:annotation>
+    <xsd:documentation 
+        source="http://graphml.graphdrawing.org/"
+        xml:lang="en">
+      Simple type for the parse.nodeids attribute of &lt;graph>.
+      graph.nodeids.type is final, that is, it may not be extended
+                          or restricted.
+      graph.nodeids.type is a restriction of xsd:string
+      Allowed values: (no restriction).
+    </xsd:documentation>
+  </xsd:annotation>
+
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="canonical"/>
+      <xsd:enumeration value="free"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="graph.edgeids.type" final="#all">
+
+  <xsd:annotation>
+    <xsd:documentation 
+        source="http://graphml.graphdrawing.org/"
+        xml:lang="en">
+      Simple type for the parse.edgeids attribute of &lt;graph>.
+      graph.edgeids.type is final, that is, it may not be extended
+                          or restricted.
+      graph.edgeids.type is a restriction of xsd:string
+      Allowed values: (no restriction).
+    </xsd:documentation>
+  </xsd:annotation>
+
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="canonical"/>
+      <xsd:enumeration value="free"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:attributeGroup name="graph.parseinfo.attrib">
+
+  <xsd:annotation>
+    <xsd:documentation 
+        source="http://graphml.graphdrawing.org/"
+        xml:lang="en">
+     Definition of the attribute group graph.parseinfo.attrib.
+     This group consists of the seven attributes:
+     <ul>
+     <li><code>parse.nodeids</code></li> (fixed to 'canonical' meaning that the id attribute
+                      of &lt;node> follows the pattern 'n[number]),
+     <li><code>parse.edgeids</code></li> (fixed to 'canonical' meaning that the id attribute
+                      of &lt;edge> follows the pattern 'e[number]),
+     <li><code>parse.order</code></li> (required; one of the values 'nodesfirst', 
+                    'adjacencylist' or 'free'),
+     <li><code>parse.nodes</code></li> (required; number of nodes in this graph), 
+     <li><code>parse.edges</code></li> (required; number of edges in this graph), 
+     <li><code>parse.maxindegree</code></li> (optional; maximal indegree of a node in this graph),
+     <li><code>parse.maxoutdegree</code></li> (optional; maximal outdegree of a node in this graph)
+     </ul>
+    </xsd:documentation>
+  </xsd:annotation>
+
+    <xsd:attribute name="parse.nodeids" type="graph.nodeids.type"/>
+    <xsd:attribute name="parse.edgeids" type="graph.edgeids.type"/>
+    <xsd:attribute name="parse.order" type="graph.order.type"/>
+    <xsd:attribute name="parse.nodes" type="graph.nodes.type"/>
+    <xsd:attribute name="parse.edges" type="graph.edges.type"/>
+    <xsd:attribute name="parse.maxindegree" type="graph.maxindegree.type" use="optional"/>
+    <xsd:attribute name="parse.maxoutdegree" type="graph.maxoutdegree.type" use="optional"/>
+  </xsd:attributeGroup>
+
+
+  <xsd:simpleType name="node.indegree.type" final="#all">
+
+  <xsd:annotation>
+    <xsd:documentation 
+        source="http://graphml.graphdrawing.org/"
+        xml:lang="en">
+      Simple type for the parse.indegree attribute of &lt;node>.
+      node.indegree.type is final, that is, it may not be extended
+                          or restricted.
+      node.indegree.type is a restriction of xsd:nonNegativeInteger
+      Allowed values: (no restriction).
+    </xsd:documentation>
+  </xsd:annotation>
+
+    <xsd:restriction base="xsd:nonNegativeInteger"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="node.outdegree.type" final="#all">
+
+  <xsd:annotation>
+    <xsd:documentation 
+        source="http://graphml.graphdrawing.org/"
+        xml:lang="en">
+      Simple type for the parse.outdegree attribute of &lt;node>.
+      node.outdegree.type is final, that is, it may not be extended
+                          or restricted.
+      node.outdegree.type is a restriction of xsd:nonNegativeInteger
+      Allowed values: (no restriction).
+    </xsd:documentation>
+  </xsd:annotation>
+
+    <xsd:restriction base="xsd:nonNegativeInteger"/>
+  </xsd:simpleType>
+
+  <xsd:attributeGroup name="node.parseinfo.attrib">
+
+  <xsd:annotation>
+    <xsd:documentation 
+        source="http://graphml.graphdrawing.org/"
+        xml:lang="en">
+     Definition of the attribute group node.parseinfo.attrib.
+     This group consists of two attributes
+     - parse.indegree (optional; indegree of this node),
+     - parse.outdegree (optional; outdegree of this node).
+    </xsd:documentation>
+  </xsd:annotation>
+
+    <xsd:attribute name="parse.indegree" type="node.indegree.type" use="optional"/>
+    <xsd:attribute name="parse.outdegree" type="node.outdegree.type" use="optional"/>
+  </xsd:attributeGroup>
+
+</xsd:schema>

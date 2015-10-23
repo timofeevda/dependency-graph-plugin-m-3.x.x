@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+
+<!-- Header -->
+<xsd:schema
+    targetNamespace="http://www.yworks.com/xml/graphml"
+
+    xmlns="http://www.yworks.com/xml/graphml"
+    xmlns:g="http://graphml.graphdrawing.org/xmlns"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    >
+
+  <xsd:simpleType name="portConstraint.Endpoint.type">
+    <xsd:annotation>
+      <xsd:documentation>
+        The valid endpoint types of a port constraint.
+        <p>
+          Valid values are:
+          <ul>
+            <li><b>source</b>: for a source port constraint</li>
+            <li><b>target</b>: for a target port constraint</li>
+          </ul>
+        </p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="source"/>
+      <xsd:enumeration value="target"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="portConstraint.Side.type">
+    <xsd:annotation>
+      <xsd:documentation>
+        The valid locations of a port constraint.
+        <p>
+          Valid values are:
+          <ul>
+            <li><b>east</b>: for an east location</li>
+            <li><b>west</b>: for a west location</li>
+            <li><b>north</b>: for a north location</li>
+            <li><b>south</b>: for a south location</li>
+            <li><b>any</b>: for any location</li>
+          </ul>
+        </p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="east"/>
+      <xsd:enumeration value="west"/>
+      <xsd:enumeration value="north"/>
+      <xsd:enumeration value="south"/>
+      <xsd:enumeration value="any"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Processor -->
+  <xsd:complexType name="PortConstraint.type">
+    <xsd:annotation>
+      <xsd:documentation>
+        Complex type definition for a portconstraint.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="endpoint" type="portConstraint.Endpoint.type" use="required">
+      <xsd:annotation>
+        <xsd:documentation>
+          The type of the constraint (source or target).
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="side" type="portConstraint.Side.type" use="required">
+      <xsd:annotation>
+        <xsd:documentation>
+          The location of the constraint (source or target).
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="strong" type="xsd:boolean" use="optional" default="false">
+      <xsd:annotation>
+        <xsd:documentation>
+          Whether this is a strong port constraint.
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="groupid" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+          An optional edge group id.
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <!-- Element Definition for  Postprocessors -->
+  <xsd:element name="PortConstraint" type="PortConstraint.type">
+    <xsd:annotation>
+      <xsd:documentation>
+        PortConstraint element definition.
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+
+</xsd:schema>
