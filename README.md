@@ -15,7 +15,7 @@ The Dependency Graph plugin has one goal:
 | transitive    | boolean       | The type of dependencies traversal (transitive or not). Default value is: true                                         |
 | separateGraphs| String        | Create separate dependency graph for each Maven module. Default value is: false                                        |
 | labelPattern  | String        | Label pattern for the graph nodes. Default value is: "groupId:artifactId:version"                                      |
-| filterGroupId | String        | Dependency filtering based on group id. Several group ids can be specified using comma separator. Default value is: "" |
+| filterGroupId | String        | Dependency filtering based on group id. Several group ids can be specified using comma separator. Use "contains" to check if group id conform filter. Default value is: "" |
 
 
 ### Usage
